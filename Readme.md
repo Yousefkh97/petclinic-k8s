@@ -40,3 +40,15 @@ docker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PAS
 
 Further documentation is provided [here](https://github.com/spring-projects/spring-petclinic/blob/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt).
 
+## Kubernetes Deployment
+
+The steps to add a Kubernetes deployment:
+ 1) Create a Dockerfile that builds a new image using the command: "docker build -t petclinic . "
+ 2) Create a new Repository in Dockerhub named "yousefkh97/petclinic", tag the image from step 1 using "docker tag petclinic yousefkh97/petclinic"
+    and push it to Dockerhub using "docker push yousefkh97/petclinic".
+ 3) Create all related files to kubernetes deployment. you can find all the files in k8s directory. The files are:
+    3.1) petclinic-deployment.yml : In this file you can find the main deployment with two containers: one for the petclinic app and the other for mysql DB connected to the 
+         configmap in order to get the environment variables.
+    3.2) petclinic-configmap.yml: In this file you can find the environment variables for mysql DB.
+    3.3) petclinic-service.yml: The service that allows us to connect to the deployment.
+
