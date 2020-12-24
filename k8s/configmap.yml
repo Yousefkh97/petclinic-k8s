@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-configmap
+data:
+  # property-like keys; each key maps to a simple value
+  mysql_root_password: ""
+  mysql_allow_empty_password: "true"
+  mysql_user: petclinic
+  mysql_password: petclinic
+  mysql_database: petclinic

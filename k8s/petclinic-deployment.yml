@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment # kind of K8S Object
+metadata:
+  name: petclinic-deployment
+  labels:
+    app: petclinic # we use this label to interact with service, Very Important!
+spec:
+  replicas: 1 # the number of containers we need
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: yousefkh97/petclinic # the image for the docker containers
+        ports:
+        - containerPort: 8080 # the default port of petclinic application
+      - name: mysql
+        image: mysql:5.7 # the image for the docker containers is the latest version of mysql
+        ports:
+        - containerPort: 3306 # the default port of apache web server
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-configmap
+              key: mysql_root_password
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-configmap
+              key: mysql_allow_empty_password
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-configmap
+              key: mysql_user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-configmap
+              key: mysql_password
+        - name: MYSQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-configmap
+              key: mysql_database
