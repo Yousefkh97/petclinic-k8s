@@ -54,4 +54,13 @@ The steps to add a Kubernetes deployment:
     3.2) petclinic-configmap.yml: In this file you can find the environment variables for mysql DB.
     
     3.3) petclinic-service.yml: The service that allows us to connect to the deployment.
+    
+## How to run with Kubernetes?
+ Run the command "kubectl apply -f ./k8s/".
+ 
+ The command creates one configMap, one Deployment and one Service.
+ 
+ After the initialization ends, run the command "kubectl get svc" and copy the random port from the service.
+ 
+ Go to http://localhost:randomPort and you can see the petclinic app.
 
