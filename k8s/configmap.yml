@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: petclinic-configmap
 data:
-  # property-like keys; each key maps to a simple value
+  # all the environment variables related to mysql
   mysql_root_password: ""
   mysql_allow_empty_password: "true"
   mysql_user: petclinic

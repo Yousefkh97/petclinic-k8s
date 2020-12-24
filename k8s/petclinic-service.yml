@@ -1,11 +1,11 @@
 apiVersion: v1
-kind: Service # kind of K8S Object
+kind: Service 
 metadata:
   name: petclinic-service
 spec:
   selector:
     app: petclinic # the same label we used for the petclinic deployment
-  type: NodePort
+  type: NodePort # very important to connect to the pods via service
   ports:
     - protocol: TCP
       port: 8080

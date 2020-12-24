@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment # kind of K8S Object
+kind: Deployment
 metadata:
   name: petclinic-deployment
   labels:
@@ -16,36 +16,36 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: yousefkh97/petclinic # the image for the docker containers
+        image: yousefkh97/petclinic # the name of the image that I created and pushed to Dockerhub
         ports:
         - containerPort: 8080 # the default port of petclinic application
       - name: mysql
-        image: mysql:5.7 # the image for the docker containers is the latest version of mysql
+        image: mysql:5.7 # the image for the docker containers for mysql database
         ports:
-        - containerPort: 3306 # the default port of apache web server
-        env:
+        - containerPort: 3306 # the default port of mysql database
+        env: # All the environment variables that we need and we get them from our configMap
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: petclinic-configmap
+              name: petclinic-configmap # tha name of the configMap that we use to get the values of the env variables
               key: mysql_root_password
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: petclinic-configmap
+              name: petclinic-configmap # tha name of the configMap that we use to get the values of the env variables
               key: mysql_allow_empty_password
         - name: MYSQL_USER
           valueFrom:
             configMapKeyRef:
-              name: petclinic-configmap
+              name: petclinic-configmap # tha name of the configMap that we use to get the values of the env variables
               key: mysql_user
         - name: MYSQL_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: petclinic-configmap
+              name: petclinic-configmap # tha name of the configMap that we use to get the values of the env variables
               key: mysql_password
         - name: MYSQL_DATABASE
           valueFrom:
             configMapKeyRef:
-              name: petclinic-configmap
+              name: petclinic-configmap # tha name of the configMap that we use to get the values of the env variables
               key: mysql_database
