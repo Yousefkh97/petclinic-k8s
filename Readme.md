@@ -60,7 +60,7 @@ The steps to add a Kubernetes deployment:
  
  The command creates one configMap, one Deployment and one Service.
  
- After the initialization ends, run the command "kubectl get svc" and copy the random port from the service.
+ When the initialization ends, run the command "kubectl get svc" and copy the random port from the service.
  
  Go to http://localhost:randomPort and you can see the petclinic app.
 
